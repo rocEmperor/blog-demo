@@ -11,23 +11,51 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import com.example.spring1.dto.UserAddDTO;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.Operation;
+import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.List;
 @Tag(name = "用户管理", description = "用户相关的增删改查接口")
 @RestController
 @RequestMapping("/user")
+@RequiredArgsConstructor
 public class UserController {
+    private static final Logger log = LoggerFactory.getLogger(UserController.class);
+    private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
     @Autowired
     private UserService userService;
     // 查询所有用户
     @Operation(summary = "查询所有用户", description = "查询所有用户信息")
     @GetMapping("/list")
-    public  Result<List<User>> list () {
+    public  Result<List<User>> list (HttpServletRequest request) {
         List<User> list = userService.findAll();
-        return Result.success(list);
+        Result<List<User>> result = Result.success(list);
+        try {
+            String resultJson = OBJECT_MAPPER.writeValueAsString(result);
+            log.info("接口调用完成 | method={} | uri={} | query={} | remoteIp={} | response={}",
+                    request.getMethod(),
+                    request.getRequestURI(),
+                    request.getQueryString(),
+                    request.getRemoteAddr(),
+                    resultJson);
+        } catch (JsonProcessingException e) {
+            log.warn("接口调用完成(序列化失败) | method={} | uri={} | query={} | remoteIp={} | response={}",
+                    request.getMethod(),
+                    request.getRequestURI(),
+                    request.getQueryString(),
+                    request.getRemoteAddr(),
+                    result,
+                    e);
+        }
+        return result;
     }
     // 根据ID查单个用户
     @Operation(summary = "根据ID查询用户", description = "通过用户ID获取单个用户的完整信息")
