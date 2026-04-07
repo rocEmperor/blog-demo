@@ -6,6 +6,12 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
+
+    @ExceptionHandler(BusinessException.class)
+    public Result<?> handleBusiness(BusinessException e) {
+        return Result.error(e.getCode(), e.getMessage());
+    }
+
     // 所有异常都走这里
     @ExceptionHandler(Exception.class)
     public Result<?> handleException(Exception e) {

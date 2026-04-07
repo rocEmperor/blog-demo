@@ -1,0 +1,5 @@
+com\example\spring1\security\JsonAccessDeniedHandler.class
+com\example\spring1\security\JwtUserPrincipal.class
+com\example\spring1\security\JwtAuthenticationFilter.class
+com\example\spring1\security\JsonAuthenticationEntryPoint.class
+com\example\spring1\config\SecurityConfig.class
