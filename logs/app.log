@@ -1053,3 +1053,6 @@ Caused by: java.lang.ClassNotFoundException: com.example.spring1.entity.User
 2026-04-07 16:37:46 [http-nio-8080-exec-5] INFO  o.s.web.servlet.DispatcherServlet.initServletBean:525 - Initializing Servlet 'dispatcherServlet'
 2026-04-07 16:37:46 [http-nio-8080-exec-5] INFO  o.s.web.servlet.DispatcherServlet.initServletBean:547 - Completed initialization in 1 ms
 2026-04-07 16:37:46 [http-nio-8080-exec-5] INFO  c.e.s.controller.UserController.list:43 - 接口调用完成 | method=GET | uri=/user/list | query=null | remoteIp=0:0:0:0:0:0:0:1 | response={"code":200,"msg":"成功","data":[{"id":1,"username":"杜甫"},{"id":2,"username":"杜甫1"},{"id":3,"username":"杜甫2"},{"id":4,"username":"zhangsan"}]}
+2026-04-07 18:33:10 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean.destroy:651 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-04-07 18:33:10 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource.close:350 - HikariPool-2 - Shutdown initiated...
+2026-04-07 18:33:10 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource.close:352 - HikariPool-2 - Shutdown completed.
