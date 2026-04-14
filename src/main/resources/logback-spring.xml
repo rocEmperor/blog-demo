@@ -40,7 +40,7 @@
     </root>
 
     <!-- 4. 项目包日志级别：debug，覆盖根级别 -->
-    <logger name="com.example.spring1" level="debug" additivity="false">
+    <logger name="com.example.blog" level="debug" additivity="false">
         <appender-ref ref="CONSOLE" />
         <appender-ref ref="FILE" />
     </logger>
